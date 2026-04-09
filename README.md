@@ -14,7 +14,5 @@ The app presents multiple-choice questions, lets users select answers, and calcu
 
 ---
 
-## 🛠️ How to Run
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/amrmabrook/Quiz.git
+## Live demo
+https://amrmabrook.github.io/Quiz/
