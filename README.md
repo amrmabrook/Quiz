@@ -15,4 +15,4 @@ The app presents multiple-choice questions, lets users select answers, and calcu
 ---
 
 ## Live demo
-https://amrmabrook.github.io/Quiz/
+<a href="https://amrmabrook.github.io/Quiz/">Demo</a>
