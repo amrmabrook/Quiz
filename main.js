@@ -16,7 +16,7 @@ let homeBtn = document.querySelector(".home")
 let currentIndex = 0;
 let score = 0;
 let countDown;
-let duration = 5;
+let duration = 10;
 ////////////////
 // Dark mood ////
 if (localStorage.getItem("theme") === "dark-mode") {
@@ -58,7 +58,7 @@ bullets.innerHTML = "";
       answersArea.innerHTML = "";
       getQuestions(res[chooseQuiz.value][currentIndex], count);
       ///timer of questions
-      // timer(duration);
+      timer(duration);
       ////////////////
         quizInfo(count,res[`${chooseQuiz.value}`][0].category)
 
@@ -76,8 +76,8 @@ bullets.innerHTML = "";
           answersArea.innerHTML = "";
           getQuestions(res[chooseQuiz.value][currentIndex], count);
           //timer of next question
-          // clearInterval(countDown);
-          // timer(duration);
+          clearInterval(countDown);
+          timer(duration);
         } else {
           backHome();
           showScore(score, count);
