@@ -49,17 +49,19 @@ startQuiz.onclick = () => {
       //main variables
       let count = res[`${chooseQuiz.value}`].length;
     
-      //create bullets and quiz info
-      bullets.innerHTML = "";
-      createBullets(count, res[`${chooseQuiz.value}`][0].category);
-
+        //create bullets and quiz info
+      
+bullets.innerHTML = "";
+      createBullets(count);
       //get questions from api
       question.innerHTML = "";
       answersArea.innerHTML = "";
       getQuestions(res[chooseQuiz.value][currentIndex], count);
       ///timer of questions
-      timer(duration);
+      // timer(duration);
       ////////////////
+        quizInfo(count,res[`${chooseQuiz.value}`][0].category)
+
       //submit answer//
       submitBtn.addEventListener("click", () => {
         let rightAnswer = res[`${chooseQuiz.value}`][currentIndex].right_answer;
@@ -69,17 +71,18 @@ startQuiz.onclick = () => {
         checkAnswer(rightAnswer, count);
         currentIndex++;
         if (currentIndex < count) {
+          quizInfo(count,res[`${chooseQuiz.value}`][0].category)
           question.innerHTML = "";
           answersArea.innerHTML = "";
           getQuestions(res[chooseQuiz.value][currentIndex], count);
           //timer of next question
-          clearInterval(countDown);
-          timer(duration);
+          // clearInterval(countDown);
+          // timer(duration);
         } else {
           backHome();
           showScore(score, count);
-
         }
+     
       });
 // end of submit answer
     });
@@ -91,16 +94,20 @@ startQuiz.onclick = () => {
 
 //all functions
 //[1] create bullets
-function createBullets(count, Category) {
-  infoArea.innerHTML = `
-     <span>Category:${Category}</span>
-        <span>question number:${count}</span>
-    `;
+function createBullets(count) {
   for (let i = 0; i < count; i++) {
     let bullet = document.createElement("span");
 
     bullets.appendChild(bullet);
   }
+}
+
+//function question info
+function quizInfo(count,Category){
+    infoArea.innerHTML = `
+     <span>Category:${Category}</span>
+        <span>question number: ${currentIndex+1}/${count}</span>
+    `;
 }
 
 //[2] get questions from api
@@ -148,10 +155,7 @@ function checkAnswer(rigth, count) {
 
   if (selectanswer) {
     if (selectanswer === rigth) {
-      console.log(`${selectanswer} : ${rigth}`);
       score++;
-    } else {
-      console.log("❌ Wrong:", selectanswer, "| Right:", rigth);
     }
   }
 }
